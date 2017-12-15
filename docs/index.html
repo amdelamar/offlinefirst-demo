@@ -20,10 +20,10 @@
     <link rel="stylesheet" href="https://austindelamar.com/osseous/1.2.0/osseous.min.css"/>
     <link rel="stylesheet" href="icomoon/icomoon.css?v=1.2.0">
 
-    <title>PouchDB Starter - Offline-first demo</title>
+    <title>Offline-First Demo</title>
     <style>
         html,body{height: 81%;}
-        :root{--gradient:linear-gradient(0deg, rgba(255, 255, 255, 0) 50%, #ffffff), linear-gradient(70deg, #eaf5ff 32%, #f6fff8);}
+        :root{--gradient:linear-gradient(0deg, rgba(255, 255, 255, 0) 50%, #ffffff), linear-gradient(70deg, #deeff9 32%, #e8def9);}
     </style>
 </head>
 <body>
@@ -36,7 +36,7 @@
       </a>
   </div>
     <div class="nav-list text-center" onclick="closeSidebar()">
-        <a class="nav-item" href="#demo">Demo</a>
+        <a class="nav-item" href="#lorem-ipsum">Lorem Ipsum</a>
     </div>
     <div class="padding-top-large full-width text-center">
         <p class="text-small"><em>© <a href="https://austindelamar.com">Austin Delamar</a> - 2017</em></p>
@@ -47,7 +47,7 @@
 <nav class="navbar border-bottom">
     <div class="navbar-body container">
       <div class="nav-item-logo">
-          <a href="#"><span class="text-medium text-thin text-uppercase text-wide">PouchDB</span></a>
+          <a href="#"><span class="text-medium text-thin text-uppercase text-wide">OF-Demo</span></a>
       </div>
       <div class="nav-small-menu">
           <a class="nav-item" title="Open Menu" href="javascript:openSidebar()">
@@ -55,7 +55,7 @@
           </a>
       </div>
       <div class="nav-group nav-large-menu">
-          <a class="nav-item" href="#demo">Demo</a>
+          <a class="nav-item" href="#lorem-ipsum">Lorem Ipsum</a>
       </div>
   	</div>
 </nav>
@@ -77,18 +77,9 @@
 <!-- Main Content -->
 <article class="container">
 
-  <div id="demo" class="row section">
-    <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac ante mauris. Fusce euismod ultricies placerat. Sed dapibus nunc ac dapibus tincidunt. Nulla porta enim nec porttitor placerat. Nullam sollicitudin finibus dui, a pellentesque massa vulputate sit amet. Cras sem erat, blandit vitae vehicula quis, iaculis vel eros. Duis sit amet congue orci. Proin ullamcorper, magna vel eleifend blandit, magna tortor ornare orci, a molestie lectus est eget mauris.
-<br/><br/>
-Vestibulum in elementum magna, ac fermentum eros. Ut congue placerat nunc a porttitor. Suspendisse potenti. Aliquam odio ante, consequat sed ante tempor, interdum ullamcorper ex. Curabitur magna eros, placerat in scelerisque eu, elementum id magna. Sed non commodo est, in cursus justo. Curabitur massa ligula, vulputate nec aliquam nec, euismod eget neque. Aenean id elit vitae eros dignissim malesuada ut a metus. Sed malesuada quam iaculis nunc tincidunt laoreet. Maecenas non mattis urna, at pretium ante. Cras sagittis sit amet diam eu ullamcorper. Donec vitae scelerisque sapien.
-<br/><br/>
-Cras tincidunt imperdiet efficitur. Morbi non eleifend lacus. Proin ipsum eros, ornare sit amet faucibus faucibus, iaculis eget magna. Vestibulum ut dolor varius, ultrices dolor quis, efficitur magna. Nunc id vestibulum mi, sit amet varius arcu. Morbi vehicula quis nulla vitae gravida. Nullam tristique a enim et varius. Phasellus posuere leo mi, at lobortis nibh aliquam nec.
-<br/><br/>
-Cras felis nunc, varius id pulvinar sit amet, dapibus non diam. Duis maximus ultricies viverra. Donec vitae pharetra justo, ut cursus felis. Quisque viverra, odio in cursus facilisis, odio eros eleifend eros, nec porttitor metus leo vel odio. Suspendisse eu massa purus. Sed vitae justo erat. Curabitur erat orci, fringilla in velit et, dictum scelerisque metus. In vel odio id enim mattis lacinia.
-<br/><br/>
-Morbi tincidunt lorem a ante egestas, volutpat faucibus tellus dapibus. Fusce nec interdum massa, ut mattis eros. Phasellus ligula risus, porta sed ipsum a, blandit rhoncus metus. Pellentesque elit odio, imperdiet vitae mauris eget, gravida euismod ex. Vivamus a eros sagittis orci vestibulum rutrum varius eget mi. Duis laoreet condimentum lorem posuere bibendum. Morbi vel sem molestie, finibus libero vel, hendrerit nisi. Curabitur egestas sapien sed nisi eleifend, quis accumsan tellus dignissim. Aliquam tempus libero quam, sagittis elementum nulla elementum in. Curabitur turpis enim, dictum eget lectus nec, lacinia commodo enim. Suspendisse potenti. Nulla congue ex laoreet libero pellentesque accumsan. In hac habitasse platea dictumst. 
-	</p>
+  <div id="lorem-ipsum" class="row section">
+    <h2>Lorem Ipsum</h2>
+    <p id="page-content"></p>
 
     <div class="twelve columns padding-large"></div>
   </div>
@@ -102,8 +93,29 @@ Morbi tincidunt lorem a ante egestas, volutpat faucibus tellus dapibus. Fusce ne
   <a class="button button-blue" title="Back to top" href="javascript:gotoTop()">Back to Top</a>
 </footer>
 
-<!-- Lazy load JavaScript, mainly for navigation -->
+<!-- Lazy load JavaScript -->
 <script type="text/javascript" src="https://austindelamar.com/osseous/1.2.0/osseous.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pouchdb@6.3.4/dist/pouchdb.min.js"></script>
+
+<script>
+var db = new PouchDB('mydb');
+
+// create our doc
+var mydoc = {
+  "_id": "mydoc",
+  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac ante mauris. Fusce euismod ultricies placerat. Sed dapibus nunc ac dapibus tincidunt. Nulla porta enim nec porttitor placerat. Nullam sollicitudin finibus dui, a pellentesque massa vulputate sit amet. Cras sem erat, blandit vitae vehicula quis, iaculis vel eros. Duis sit amet congue orci. Proin ullamcorper, magna vel eleifend blandit, magna tortor ornare orci, a molestie lectus est eget mauris.<br/><br/>Vestibulum in elementum magna, ac fermentum eros. Ut congue placerat nunc a porttitor. Suspendisse potenti. Aliquam odio ante, consequat sed ante tempor, interdum ullamcorper ex. Curabitur magna eros, placerat in scelerisque eu, elementum id magna. Sed non commodo est, in cursus justo. Curabitur massa ligula, vulputate nec aliquam nec, euismod eget neque. Aenean id elit vitae eros dignissim malesuada ut a metus. Sed malesuada quam iaculis nunc tincidunt laoreet. Maecenas non mattis urna, at pretium ante. Cras sagittis sit amet diam eu ullamcorper. Donec vitae scelerisque sapien.<br/><br/>Cras tincidunt imperdiet efficitur. Morbi non eleifend lacus. Proin ipsum eros, ornare sit amet faucibus faucibus, iaculis eget magna. Vestibulum ut dolor varius, ultrices dolor quis, efficitur magna. Nunc id vestibulum mi, sit amet varius arcu. Morbi vehicula quis nulla vitae gravida. Nullam tristique a enim et varius. Phasellus posuere leo mi, at lobortis nibh aliquam nec.<br/><br/>Cras felis nunc, varius id pulvinar sit amet, dapibus non diam. Duis maximus ultricies viverra. Donec vitae pharetra justo, ut cursus felis. Quisque viverra, odio in cursus facilisis, odio eros eleifend eros, nec porttitor metus leo vel odio. Suspendisse eu massa purus. Sed vitae justo erat. Curabitur erat orci, fringilla in velit et, dictum scelerisque metus. In vel odio id enim mattis lacinia.<br/><br/>Morbi tincidunt lorem a ante egestas, volutpat faucibus tellus dapibus. Fusce nec interdum massa, ut mattis eros. Phasellus ligula risus, porta sed ipsum a, blandit rhoncus metus. Pellentesque elit odio, imperdiet vitae mauris eget, gravida euismod ex. Vivamus a eros sagittis orci vestibulum rutrum varius eget mi. Duis laoreet condimentum lorem posuere bibendum. Morbi vel sem molestie, finibus libero vel, hendrerit nisi. Curabitur egestas sapien sed nisi eleifend, quis accumsan tellus dignissim. Aliquam tempus libero quam, sagittis elementum nulla elementum in. Curabitur turpis enim, dictum eget lectus nec, lacinia commodo enim. Suspendisse potenti. Nulla congue ex laoreet libero pellentesque accumsan. In hac habitasse platea dictumst."
+};
+db.put(mydoc);
+
+// grab our doc
+db.get('mydoc').then(function (doc) {
+  document.getElementById('page-content').innerHTML = doc.content;
+});
+
+db.remove('mydoc');
+
+
+</script>
 
 </body>
 </html>
