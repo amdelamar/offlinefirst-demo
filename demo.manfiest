@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# 2017-12-18
+
+# Immediately cache these files.
+CACHE:
+index.html
+https://austindelamar.com/osseous/1.2.0/osseous.min.css
+https://austindelamar.com/osseous/1.2.0/osseous.min.js
+https://cdn.jsdelivr.net/npm/pouchdb@6.3.4/dist/pouchdb.min.js
+
+# Resources that are required to be from the network (online).
+NETWORK:
+*
+
+# Specify fallback resources if first choice is unavailable.
+FALLBACK:
+# images/large/ images/offline.jpg

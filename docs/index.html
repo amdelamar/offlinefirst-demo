@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html manifest="demo.manifest">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
@@ -9,17 +9,10 @@
     <meta name="keywords" content="offline,first,demo,pouchdb,amdelamar"/>
     <meta name="description" content="Offline-first demonstration."/>
     <meta name="robots" content="all"/>
-    <!-- Facebook Open Graph -->
-    <!-- TODO -->
-    <!-- Twitter Card -->
-    <!-- TODO -->
-    <!-- Google+ Schema.org -->
-    <!-- TODO -->
+
     <link rel="shortcut icon" href="img/favicon.ico"/>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico"/>
     <link rel="stylesheet" href="https://austindelamar.com/osseous/1.2.0/osseous.min.css"/>
-    <link rel="stylesheet" href="icomoon/icomoon.css?v=1.2.0">
-
     <title>Offline-First Demo</title>
     <style>
         html,body{height: 81%;}
@@ -69,7 +62,7 @@
         </div>
         <div class="twelve columns">
             <h1 class="text-uppercase text-thinner text-wide">Offline-first Demo</h1>
-            <p>This page should be saved to your local browser cache. If you lose internet connection, it should still serve this page regardless.</p>
+            <p>Status: <code id="networkStatus">Checking...</code></p>
         </div>
     </div>
 </header>
@@ -78,6 +71,7 @@
 <article class="container">
 
   <div id="lorem-ipsum" class="row section">
+    <p>This page should be saved to your local browser cache. If you lose internet connection, it should still serve this page regardless.</p>
     <h2>Lorem Ipsum</h2>
     <p id="page-content"></p>
 
@@ -98,12 +92,32 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pouchdb@6.3.4/dist/pouchdb.min.js"></script>
 
 <script>
+// Detect connectivity
+if (navigator.onLine) {
+  console.log('Network status is online.');
+  document.getElementById('networkStatus').innerHTML = 'online'
+} else {
+  console.log('No internet connection detected.');
+  document.getElementById('networkStatus').innerHTML = 'offline'
+}
+
+// Listen for network changes
+window.addEventListener("offline", function(e) {
+  console.log('Network status is online.');
+  document.getElementById('networkStatus').innerHTML = 'online'
+}, false);
+window.addEventListener("online", function(e) {
+  console.log('No internet connection detected.');
+  document.getElementById('networkStatus').innerHTML = 'offline'
+}, false);
+
+// Database
 var db = new PouchDB('mydb');
 
 // try to find the local-storage mydoc first
 db.get('mydoc').catch(function (err) {
   if (err.name === 'not_found') {
-    
+
     // create mydoc
     var mydoc = {
   "_id": "mydoc",
@@ -115,7 +129,7 @@ db.get('mydoc').catch(function (err) {
     document.getElementById('page-content').innerHTML = mydoc.content;
     console.log('Page content was not found in local-storage.');
     console.log('Creating local-storage db.');
-  } else { 
+  } else {
     // hm, some other error
     throw err;
   }
